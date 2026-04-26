@@ -11,6 +11,6 @@ manifest:
       import: app/west.yml
     - name: zmk-driver-paw3222
       remote: yasio25119915
-      revision: master
+      revision: main
   self:
     path: config
