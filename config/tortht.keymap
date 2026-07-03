@@ -79,7 +79,7 @@
 		compatible = "zmk,combos";
 		combo_layer5 {
             timeout-ms = <100>;
-            key-positions = <6 7>;     // u と i の位置
+            key-positions = <5 6>;     // y と u の位置
             bindings = <&mo 5>;        // 押している間レイヤー5
             layers = <4>;              // レイヤー4でのみ有効
         };
@@ -127,7 +127,7 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans              &trans    &mkp MB1               &mkp MB2             &trans    &trans
+&trans  &trans  &trans  &trans  &trans              &mkp MB1  &mkp MB2               &trans               &trans    &trans    
 &trans  &trans  &trans  &trans  &trans              &trans    &kp LA(LEFT_ARROW)     &kp LA(RIGHT_ARROW)  &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans    &trans                 &trans               &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans    &trans                 &trans               &trans    &trans
@@ -146,9 +146,9 @@
         layer_6 {
             bindings = <
 &trans  &trans        &trans        &trans        &trans                             &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans                     &trans        &trans        &trans        &trans        &trans
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader    &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans         &trans        &trans        &trans        &trans        &bt BT_CLR_ALL
+&trans  &trans        &trans        &trans        &trans  &trans                     &trans        &trans        &trans        &bt BT_CLR    &bt BT_CLR_ALL
+&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader    &trans        &trans        &trans        &trans        &trans
+&trans  &trans        &trans        &trans        &trans  &trans      &trans         &trans        &trans        &trans        &trans        &trans
             >;
         };
     };
