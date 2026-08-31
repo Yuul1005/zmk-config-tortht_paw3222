@@ -6,22 +6,19 @@ manifest:
       url-base: https://github.com/yasio25119915
     - name: cormoran
       url-base: https://github.com/cormoran
-  projects:
-    - name: zmk
-      remote: cormoran
-      revision: v0.3-branch+dya
-      import: app/west.yml
-    - name: zmk-driver-paw3222
-      remote: yasio25119915
-      revision: main
-    - name: zmk-module-runtime-input-processor
-      remote: cormoran
-      revision: zmk-v0.3.0.0
-    - name: zmk-module-settings-rpc
-      remote: cormoran
-      revision: main
-    - name: zmk-feature-custom-settings
-      remote: cormoran
-      revision: main
+projects:
+  - name: zmk
+    remote: cormoran
+    revision: v0.3-branch+dya
+    import: app/west.yml
+  - name: zmk-driver-paw3222
+    remote: yasio25119915
+    revision: main
+  - name: zmk-module-runtime-input-processor
+    remote: cormoran
+    revision: zmk-v0.3.0.0
+  - name: zmk-module-settings-rpc
+    remote: cormoran
+    revision: main
   self:
     path: config
