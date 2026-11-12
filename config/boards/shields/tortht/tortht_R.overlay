@@ -1,7 +1,13 @@
 #include "tortht.dtsi"
 #include <input/processors.dtsi>
+#include <input/processors/runtime-input-processor.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/* NFC1 / NFC2 (P0.09, P0.10) をGPIOとして使用 (Zephyr 4.1 方式) */
+&uicr {
+    nfct-pins-as-gpios;
+};
 
 &default_transform {
     col-offset = <6>;
@@ -70,6 +76,7 @@
             //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       //Y軸反転
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
+            <&mouse_runtime_input_processor>,                   //DYA Studio から感度等を変更
             <&zip_temp_layer 4 10000>;                            //オートマウスレイヤーの選択
     scroller {
         layers = <5>;
@@ -78,7 +85,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
            // <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       //Y軸反転
             <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
-            <&zip_scroll_scaler 1 5>;                           //スクロール量を1/4倍
+            <&scroll_runtime_input_processor>;                  //スクロール量 (DYA Studio から変更可)
     };
 };
 
@@ -102,3 +109,26 @@
 };
 
 
+
+/* ---------------- DYA Studio 対応 ---------------- */
+
+/* スクロール量: 従来の zip_scroll_scaler 1/5 と同じ初期値。DYA Studio の Trackball タブで変更可能 */
+&scroll_runtime_input_processor {
+    scale-multiplier = <1>;
+    scale-divisor = <5>;
+};
+
+/ {
+    /* DYA Studio のプレビューにトラックボールを表示する (位置は目安。x/y/size はキーと同じ単位: 100 = 1キー) */
+    trackball0: trackball0 {
+        compatible = "cormoran,physical-layout-trackball";
+        display-name = "Trackball";
+        size = <150>;
+        x = <575>;
+        y = <25>;
+
+        /* Trackball タブの mouse / scroll プロセッサと紐づける */
+        linked-device-identifiers = "mouse", "scroll";
+        linked-subsystems = "cormoran_rip", "cormoran_rip";
+    };
+};
